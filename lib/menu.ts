@@ -70,7 +70,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Cold Coffee",
     description: "Thick brewed espresso blended creamy with chilled dairy milk.",
     price: 49,
-    image: "/images/shake-cold-coffee.jpg",
+    image: "/images/shake-cold-coffee-v2.jpg",
     volume: "250 ml",
     isVeg: true,
     upsell: true
@@ -81,7 +81,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Mango Milkshake",
     description: "Sweet Alphonso mango pulp churned rich with chilled fresh milk.",
     price: 69,
-    image: "/images/shake-mango.jpg",
+    image: "/images/shake-mango-v2.jpg",
     volume: "250 ml",
     isVeg: true,
     upsell: true,
@@ -93,7 +93,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Banana Milkshake",
     description: "Ripe sweet bananas blended silky with full cream milk.",
     price: 69,
-    image: "/images/shake-banana.jpg",
+    image: "/images/shake-banana-v2.jpg",
     volume: "250 ml",
     isVeg: true
   },
@@ -103,7 +103,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Muskmelon Milkshake",
     description: "Fragrant sweet muskmelon fruit pureed with cool milk.",
     price: 69,
-    image: "/images/shake-muskmelon.jpg",
+    image: "/images/shake-muskmelon-v2.jpg",
     volume: "250 ml",
     isVeg: true
   },
@@ -113,7 +113,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Watermelon Shake",
     description: "Refreshing crushed watermelon juice kissed with chilled cream.",
     price: 69,
-    image: "/images/shake-watermelon.jpg",
+    image: "/images/shake-watermelon-v2.jpg",
     volume: "250 ml",
     isVeg: true
   },
@@ -123,7 +123,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Strawberry Milkshake",
     description: "Vibrant garden strawberries churned into a rich creamy shake.",
     price: 79,
-    image: "/images/shake-strawberry.jpg",
+    image: "/images/shake-strawberry-v2.jpg",
     volume: "250 ml",
     isVeg: true,
     upsell: true
@@ -134,7 +134,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "Oreo Milkshake",
     description: "Crushed Oreo cocoa cookies blended velvety with vanilla cream.",
     price: 99,
-    image: "/images/shake-oreo.jpg",
+    image: "/images/shake-oreo-v2.jpg",
     volume: "250 ml",
     isVeg: true,
     upsell: true,
@@ -146,7 +146,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: "KitKat Milkshake",
     description: "Crispy wafer chocolate KitKat bar churned into cold thick milk.",
     price: 99,
-    image: "/images/shake-kitkat.jpg",
+    image: "/images/shake-kitkat-v2.jpg",
     volume: "250 ml",
     isVeg: true,
     upsell: true
