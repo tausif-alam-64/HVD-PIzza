@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ShoppingBag } from "lucide-react"
 import { useOrderStore } from "@/lib/store"
 import { CONTENT } from "@/lib/content"
 import { getPlaceholderSvg } from "@/lib/placeholders"
@@ -31,28 +31,28 @@ export function OrderBar() {
       <div className="max-w-md mx-auto pointer-events-auto">
         <button
           onClick={() => setDrawerOpen(true)}
-          className="w-full bg-char text-white rounded-[24px] p-2 sm:p-2.5 pl-3 border border-white/15 shadow-warm-float flex items-center justify-between gap-3 hover:bg-char-2 active:scale-[0.98] transition-all cursor-pointer group"
+          className="w-full bg-slate-950 text-white rounded-[22px] p-3 border border-slate-800 float-bar-shadow flex items-center justify-between gap-3 hover:bg-black active:scale-[0.98] transition-all cursor-pointer group"
         >
           {/* Stacked mini photos & item count */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center -space-x-3.5 overflow-hidden py-1">
+            <div className="flex items-center -space-x-3.5 overflow-hidden py-0.5">
               {previewItems.map(({ item }) => (
                 <div
                   key={item.id}
-                  className="w-9 h-9 rounded-full ring-2 ring-char relative overflow-hidden bg-surface flex-shrink-0"
+                  className="w-10 h-10 rounded-full ring-2 ring-slate-950 relative overflow-hidden bg-slate-800 flex-shrink-0"
                 >
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    sizes="36px"
+                    sizes="40px"
                     className="object-cover"
                     onError={(e) => {
                       ;(e.target as HTMLImageElement).src = getPlaceholderSvg(
                         item.name,
                         item.category,
-                        "#1C1513",
-                        "#D9381E"
+                        "#09090B",
+                        "#E11D48"
                       )
                     }}
                   />
@@ -61,19 +61,19 @@ export function OrderBar() {
             </div>
 
             <div className="flex flex-col text-left">
-              <span className="text-xs text-white/70 font-medium">
-                {itemCount} {itemCount === 1 ? "item" : "items"}
+              <span className="text-[11px] text-slate-300 font-semibold tracking-wide uppercase">
+                {itemCount} {itemCount === 1 ? "Item" : "Items"} in Cart
               </span>
-              <span className="font-display font-extrabold text-base text-white tabular-nums leading-none">
+              <span className="font-display font-black text-lg text-white tabular-nums leading-none mt-0.5">
                 ₹{total}
               </span>
             </div>
           </div>
 
           {/* View order CTA pill */}
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-tomato text-white text-xs font-bold shadow-xs group-hover:bg-tomato-press transition-colors">
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-tomato text-white text-xs font-black shadow-sm group-hover:bg-tomato-hover transition-colors uppercase tracking-wider">
             <span>{CONTENT.orderBar.viewOrder}</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </div>
         </button>
       </div>

@@ -1,26 +1,26 @@
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google"
+import { Inter, Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
 import { CONFIG } from "@/lib/config"
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-display",
-  display: "swap"
-})
-
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap"
 })
 
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+  display: "swap"
+})
+
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#17110F" },
-    { media: "(prefers-color-scheme: dark)", color: "#0C0807" }
+    { media: "(prefers-color-scheme: light)", color: "#09090B" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090B" }
   ],
   width: "device-width",
   initialScale: 1,
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: `${CONFIG.name} — ${CONFIG.tagline}`,
+  title: `${CONFIG.name} — Fresh Pizzas in Sanghipuram`,
   description: `Authentic home-style pizza kitchen in ${CONFIG.area}. Order hot vegetarian pizzas, garlic bread, and thick milkshakes on WhatsApp in 3 taps.`,
   manifest: "/manifest.json",
   icons: {
@@ -60,11 +60,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${jakarta.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <head>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>" />
       </head>
-      <body className="font-sans bg-page text-ink selection:bg-tomato selection:text-white">
+      <body className="font-sans bg-page text-ink selection:bg-tomato selection:text-white antialiased">
         {children}
       </body>
     </html>

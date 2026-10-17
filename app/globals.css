@@ -2,34 +2,42 @@
 
 @layer base {
   :root {
-    --page: #FBF9F6;
+    --page: #F8F9FA;
     --surface: #FFFFFF;
-    --ink: #1B1412;
-    --ink-soft: #6A5D57;
-    --line: #ECE6E0;
-    --tomato: #D9381E;
-    --tomato-press: #B92E17;
-    --tomato-tint: #FDECE8;
-    --char: #17110F;
-    --char-2: #241A17;
-    --basil: #1E8E3E;
-    --crust: #F2B544;
+    --ink: #0F172A;
+    --ink-soft: #64748B;
+    --ink-subtle: #94A3B8;
+    --line: #E2E8F0;
+    --line-subtle: #F1F5F9;
+    --tomato: #E11D48;
+    --tomato-hover: #BE123C;
+    --tomato-tint: #FFF1F2;
+    --char: #09090B;
+    --char-card: #18181B;
+    --basil: #16A34A;
+    --basil-tint: #F0FDF4;
+    --amber-tag: #F59E0B;
+    --amber-tint: #FEF3C7;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --page: #120D0C;
-      --surface: #1C1513;
-      --ink: #F7EFE9;
-      --ink-soft: #B9A89F;
-      --line: #2D2421;
-      --tomato: #FF6A4D;
-      --tomato-press: #E64E30;
-      --tomato-tint: #2B1612;
-      --char: #0C0807;
-      --char-2: #191210;
-      --basil: #34A853;
-      --crust: #FFC55C;
+      --page: #09090B;
+      --surface: #141416;
+      --ink: #F8FAFC;
+      --ink-soft: #94A3B8;
+      --ink-subtle: #64748B;
+      --line: #27272A;
+      --line-subtle: #1E1E24;
+      --tomato: #F43F5E;
+      --tomato-hover: #E11D48;
+      --tomato-tint: #2B0E14;
+      --char: #09090B;
+      --char-card: #18181B;
+      --basil: #22C55E;
+      --basil-tint: #0B2515;
+      --amber-tag: #FBBF24;
+      --amber-tint: #281D06;
     }
   }
 }
@@ -39,21 +47,25 @@
   --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-ink-subtle: var(--ink-subtle);
   --color-line: var(--line);
+  --color-line-subtle: var(--line-subtle);
   --color-tomato: var(--tomato);
-  --color-tomato-press: var(--tomato-press);
+  --color-tomato-hover: var(--tomato-hover);
   --color-tomato-tint: var(--tomato-tint);
   --color-char: var(--char);
-  --color-char-2: var(--char-2);
+  --color-char-card: var(--char-card);
   --color-basil: var(--basil);
-  --color-crust: var(--crust);
+  --color-basil-tint: var(--basil-tint);
+  --color-amber-tag: var(--amber-tag);
+  --color-amber-tint: var(--amber-tint);
 }
 
-/* Custom baseline styling */
+/* Crisp typographic baseline */
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
 }
 
 body {
@@ -63,9 +75,10 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
 }
 
-/* Safe area insets for mobile notched devices */
+/* Safe area insets for notched phones */
 .safe-bottom {
   padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
@@ -79,20 +92,22 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Soft warm glow effect like oven chamber */
-.oven-glow {
-  background: radial-gradient(
-    circle at 50% 35%,
-    rgba(242, 181, 68, 0.22) 0%,
-    rgba(217, 56, 30, 0.12) 45%,
-    transparent 72%
-  );
+/* Clean, crisp app shadows like Swiggy & Blinkit */
+.card-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* Floating warm shadow for order bar and bottom drawer */
-.shadow-warm-float {
-  box-shadow: 0 16px 36px -8px rgba(27, 20, 18, 0.18),
-              0 6px 14px -4px rgba(217, 56, 30, 0.08);
+.card-hover-shadow {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-shadow:hover {
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
+}
+
+.float-bar-shadow {
+  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.22),
+              0 8px 16px -6px rgba(15, 23, 42, 0.12);
 }
 
 /* Respect user's motion preferences */

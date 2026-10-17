@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
-import { ArrowDown, Plus, Sparkles, RotateCcw } from "lucide-react"
+import { ArrowDown, Plus, Sparkles, RotateCcw, ShieldCheck, Zap } from "lucide-react"
 import { CONTENT } from "@/lib/content"
 import { MENU_ITEMS } from "@/lib/menu"
 import { useOrderStore } from "@/lib/store"
@@ -25,76 +25,73 @@ export function Hero() {
   const heroPlaceholder = getPlaceholderSvg(
     "Fresh Baked Paneer Pizza",
     "pizzas",
-    "#17110F",
-    "#D9381E"
+    "#09090B",
+    "#E11D48"
   )
 
   return (
     <section
       id="hero"
-      className="relative min-h-[82dvh] bg-char text-white flex flex-col justify-between overflow-hidden oven-glow px-4 sm:px-6 pt-6 pb-10"
+      className="relative bg-surface border-b border-line px-4 sm:px-6 pt-6 sm:pt-10 pb-8 sm:pb-12 overflow-hidden"
     >
-      {/* Background ambient circular oven mask for desktop */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-tomato/10 blur-3xl pointer-events-none" />
-
-      {/* Top headline block */}
-      <div className="max-w-xl mx-auto w-full pt-4 sm:pt-8 text-center flex flex-col items-center z-10">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-crust border border-white/15 mb-4 backdrop-blur-sm">
-          <Sparkles className="w-3.5 h-3.5 text-crust" />
-          {CONTENT.hero.badge}
-        </span>
-
-        <h1 className="font-display font-extrabold text-[clamp(2.5rem,8vw,4.25rem)] leading-[1.02] tracking-tight text-white mb-3">
-          {CONTENT.hero.headline}
-        </h1>
-
-        <p className="text-white/80 text-base sm:text-lg max-w-md font-normal leading-relaxed mb-6">
-          {CONTENT.hero.subline}
-        </p>
-
-        <a
-          href="#menu"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white font-semibold text-sm border border-white/20 transition-all backdrop-blur-md shadow-sm mb-8"
-        >
-          {CONTENT.hero.orderNowCta}
-          <ArrowDown className="w-4 h-4 text-crust animate-bounce" />
-        </a>
-      </div>
-
-      {/* Central Hero Visual Container with 4:5 mobile / 16:9 desktop crop */}
-      <div className="relative w-full max-w-md mx-auto aspect-[4/3] sm:aspect-[16/10] rounded-[24px] overflow-hidden border border-white/15 shadow-2xl bg-char-2 z-10 group">
-        <Image
-          src={imgError ? heroPlaceholder : "/images/hero-4x5.jpg"}
-          alt="Freshly baked artisan pizza"
-          fill
-          priority
-          sizes="(max-width: 640px) 100vw, 540px"
-          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-          onError={() => setImgError(true)}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-char/90 via-transparent to-black/20 pointer-events-none" />
-
-        <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white/90">
-          <span className="font-semibold flex items-center gap-1.5">
-            <VegMark className="w-3.5 h-3.5" /> Handcrafted with pure dairy
+      <div className="max-w-xl mx-auto flex flex-col gap-6">
+        {/* Trust Badges Bar like Blinkit / Swiggy */}
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-basil-tint text-basil border border-basil/20">
+            <ShieldCheck className="w-3.5 h-3.5" /> 100% Pure Vegetarian Kitchen
           </span>
-          <span className="text-white/60">Colony Special</span>
-        </div>
-      </div>
 
-      {/* Quick Order Card or Returning Visitor 'Order your usual' Card */}
-      <div className="max-w-md mx-auto w-full mt-6 z-10">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-tint text-amber-700 dark:text-amber-300 border border-amber-200">
+            <Zap className="w-3.5 h-3.5 fill-current" /> Free Colony Delivery
+          </span>
+        </div>
+
+        {/* Crisp Headline & Value Proposition */}
+        <div>
+          <h1 className="font-display font-black text-[clamp(2.1rem,7vw,3.2rem)] leading-[1.08] tracking-tight text-ink mb-2">
+            The pizza you’ve been missing.
+          </h1>
+          <p className="text-ink-soft text-sm sm:text-base font-normal leading-relaxed">
+            Freshly stretched dough, real mozzarella, and thick milkshakes. Made in Sanghipuram and delivered right to your quarter in 3 simple taps.
+          </p>
+        </div>
+
+        {/* Star Hero Image Card */}
+        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[24px] overflow-hidden border border-line card-shadow bg-slate-900 group">
+          <Image
+            src={imgError ? heroPlaceholder : "/images/hero-4x5.jpg"}
+            alt="Freshly baked artisan cheese pull pizza"
+            fill
+            priority
+            sizes="(max-width: 640px) 100vw, 600px"
+            className="object-cover group-hover:scale-102 transition-transform duration-700 ease-out"
+            onError={() => setImgError(true)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+          {/* Quick specs banner on bottom of hero image */}
+          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs">
+            <span className="font-bold flex items-center gap-1.5 drop-shadow-sm">
+              <VegMark className="w-3.5 h-3.5" /> Baked fresh on every order
+            </span>
+            <span className="px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-semibold text-white">
+              WhatsApp Instant Confirmation
+            </span>
+          </div>
+        </div>
+
+        {/* Quick Order / Reorder Card */}
         {mounted && usualOrder ? (
-          <div className="bg-surface/95 dark:bg-char-2 backdrop-blur-md rounded-[20px] p-3.5 border border-line shadow-warm-float flex items-center justify-between gap-3 text-ink">
+          <div className="bg-surface rounded-[20px] p-3.5 border-2 border-tomato/30 card-shadow flex items-center justify-between gap-3 text-ink">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-tomato-tint flex items-center justify-center text-tomato font-bold flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-tomato-tint flex items-center justify-center text-tomato font-bold flex-shrink-0">
                 <RotateCcw className="w-5 h-5 text-tomato" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-tomato tracking-wide uppercase">
-                  Returning customer
+                <span className="text-[11px] font-bold text-tomato tracking-wider uppercase">
+                  Welcome back!
                 </span>
-                <span className="text-xs sm:text-sm font-semibold text-ink line-clamp-1">
+                <span className="text-xs sm:text-sm font-bold text-ink line-clamp-1">
                   Order your usual (₹{usualOrder.total})
                 </span>
               </div>
@@ -102,15 +99,15 @@ export function Hero() {
 
             <button
               onClick={loadUsualOrder}
-              className="px-4 py-2 rounded-full bg-tomato hover:bg-tomato-press text-white font-bold text-xs shadow-md active:scale-95 transition-all flex-shrink-0"
+              className="px-4 py-2 rounded-xl bg-tomato hover:bg-tomato-hover text-white font-bold text-xs shadow-xs active:scale-95 transition-all flex-shrink-0 cursor-pointer"
             >
               Order now
             </button>
           </div>
         ) : (
-          <div className="bg-surface/95 dark:bg-char-2 backdrop-blur-md rounded-[20px] p-3 border border-white/10 shadow-warm-float flex items-center justify-between gap-3 text-ink">
+          <div className="bg-surface rounded-[20px] p-3 border border-line card-shadow flex items-center justify-between gap-3 text-ink">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-[14px] overflow-hidden relative flex-shrink-0 bg-char-2 border border-line">
+              <div className="w-13 h-13 rounded-[16px] overflow-hidden relative flex-shrink-0 bg-slate-100 border border-line">
                 <Image
                   src={featuredItem.image}
                   alt={featuredItem.name}
@@ -129,11 +126,11 @@ export function Hero() {
                   <span className="text-sm font-bold text-ink">
                     {featuredItem.name}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-xs bg-tomato-tint text-tomato text-[10px] font-bold">
-                    Featured
+                  <span className="px-1.5 py-0.5 rounded-md bg-amber-tint text-amber-700 text-[10px] font-extrabold uppercase tracking-wide">
+                    Top Pick
                   </span>
                 </div>
-                <span className="text-xs font-semibold text-ink-soft tabular-nums">
+                <span className="text-xs font-bold text-ink tabular-nums mt-0.5">
                   ₹{featuredItem.price}
                 </span>
               </div>
@@ -141,7 +138,7 @@ export function Hero() {
 
             <button
               onClick={() => addItem(featuredItem)}
-              className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-tomato hover:bg-tomato-press text-white font-bold text-xs shadow-md active:scale-95 transition-all flex-shrink-0"
+              className="inline-flex items-center gap-1 h-9 px-4 rounded-xl bg-tomato hover:bg-tomato-hover text-white font-bold text-xs shadow-xs active:scale-95 transition-all flex-shrink-0 cursor-pointer"
               aria-label={`Add ${featuredItem.name} to order`}
             >
               <Plus className="w-3.5 h-3.5" /> Add
