@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --page: #FBF9F6;
+    --surface: #FFFFFF;
+    --ink: #1B1412;
+    --ink-soft: #6A5D57;
+    --line: #ECE6E0;
+    --tomato: #D9381E;
+    --tomato-press: #B92E17;
+    --tomato-tint: #FDECE8;
+    --char: #17110F;
+    --char-2: #241A17;
+    --basil: #1E8E3E;
+    --crust: #F2B544;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #120D0C;
+      --surface: #1C1513;
+      --ink: #F7EFE9;
+      --ink-soft: #B9A89F;
+      --line: #2D2421;
+      --tomato: #FF6A4D;
+      --tomato-press: #E64E30;
+      --tomato-tint: #2B1612;
+      --char: #0C0807;
+      --char-2: #191210;
+      --basil: #34A853;
+      --crust: #FFC55C;
+    }
   }
 }
 
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-tomato: var(--tomato);
+  --color-tomato-press: var(--tomato-press);
+  --color-tomato-tint: var(--tomato-tint);
+  --color-char: var(--char);
+  --color-char-2: var(--char-2);
+  --color-basil: var(--basil);
+  --color-crust: var(--crust);
+}
+
+/* Custom baseline styling */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--page);
+  color: var(--ink);
+  min-height: 100dvh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safe area insets for mobile notched devices */
+.safe-bottom {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.safe-top {
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+
+/* Tabular figures for exact price alignment */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Soft warm glow effect like oven chamber */
+.oven-glow {
+  background: radial-gradient(
+    circle at 50% 35%,
+    rgba(242, 181, 68, 0.22) 0%,
+    rgba(217, 56, 30, 0.12) 45%,
+    transparent 72%
+  );
+}
+
+/* Floating warm shadow for order bar and bottom drawer */
+.shadow-warm-float {
+  box-shadow: 0 16px 36px -8px rgba(27, 20, 18, 0.18),
+              0 6px 14px -4px rgba(217, 56, 30, 0.08);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

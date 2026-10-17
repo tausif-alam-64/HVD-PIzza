@@ -1,69 +1,136 @@
-import Image from "next/image";
+"use client"
+
+import React, { useState } from "react"
+import { TopBar } from "@/components/TopBar"
+import { Hero } from "@/components/Hero"
+import { CategoryChips } from "@/components/CategoryChips"
+import { PizzaCard } from "@/components/PizzaCard"
+import { CompactCard } from "@/components/CompactCard"
+import { PartyBand } from "@/components/PartyBand"
+import { OrderBar } from "@/components/OrderBar"
+import { OrderSheet } from "@/components/OrderSheet"
+import { ConfirmationModal } from "@/components/ConfirmationModal"
+import { Footer } from "@/components/Footer"
+import { VegMark } from "@/components/ui/VegMark"
+import { MENU_ITEMS, MenuCategory } from "@/lib/menu"
+import { CONTENT } from "@/lib/content"
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = useState<MenuCategory>("pizzas")
+
+  const pizzas = MENU_ITEMS.filter((i) => i.category === "pizzas")
+  const sides = MENU_ITEMS.filter((i) => i.category === "sides")
+  const shakes = MENU_ITEMS.filter((i) => i.category === "shakes")
+
+  const handleSelectCategory = (cat: MenuCategory) => {
+    setActiveCategory(cat)
+    const el = document.getElementById(`section-${cat}`)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-page text-ink selection:bg-tomato selection:text-white flex flex-col">
+      {/* 1. Sticky Top Bar (56 px) */}
+      <TopBar />
+
+      <main className="flex-1">
+        {/* 2. Hero Section (min 80 dvh with oven glow & quick-order card) */}
+        <Hero />
+
+        {/* 3. Sticky Category Chips */}
+        <div id="menu">
+          <CategoryChips
+            activeCategory={activeCategory}
+            onSelectCategory={handleSelectCategory}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Vegetarian Kitchen Legend (shown once cleanly) */}
+        <div className="max-w-xl mx-auto px-4 sm:px-6 pt-6 pb-2">
+          <div className="p-3 rounded-[16px] bg-surface border border-line flex items-center gap-2.5">
+            <VegMark className="w-4 h-4 flex-shrink-0" />
+            <div className="text-xs">
+              <span className="font-bold text-ink">
+                {CONTENT.vegLegend.label}:
+              </span>{" "}
+              <span className="text-ink-soft">
+                {CONTENT.vegLegend.description}
+              </span>
+            </div>
+          </div>
         </div>
+
+        {/* 4. Menu Sections */}
+        <div className="max-w-xl mx-auto px-4 sm:px-6 py-6 space-y-12">
+          {/* Pizzas (Large cards) */}
+          <section id="section-pizzas" className="scroll-mt-28">
+            <div className="flex items-baseline justify-between mb-4">
+              <h2 className="font-display font-extrabold text-2xl text-ink">
+                {CONTENT.sections.pizzas}
+              </h2>
+              <span className="text-xs text-ink-soft font-semibold">
+                Handcrafted dough
+              </span>
+            </div>
+            <div className="flex flex-col gap-4">
+              {pizzas.map((pizza) => (
+                <PizzaCard key={pizza.id} item={pizza} />
+              ))}
+            </div>
+          </section>
+
+          {/* Sides (Compact 2-col grid) */}
+          <section id="section-sides" className="scroll-mt-28">
+            <div className="flex items-baseline justify-between mb-4">
+              <h2 className="font-display font-extrabold text-2xl text-ink">
+                {CONTENT.sections.sides}
+              </h2>
+              <span className="text-xs text-ink-soft font-semibold">
+                Oven-crisped
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {sides.map((side) => (
+                <CompactCard key={side.id} item={side} />
+              ))}
+            </div>
+          </section>
+
+          {/* Shakes (Compact 2-col grid) */}
+          <section id="section-shakes" className="scroll-mt-28">
+            <div className="flex items-baseline justify-between mb-4">
+              <h2 className="font-display font-extrabold text-2xl text-ink">
+                {CONTENT.sections.shakes}
+              </h2>
+              <span className="text-xs text-ink-soft font-semibold">
+                Chilled 250 ml
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {shakes.map((shake) => (
+                <CompactCard key={shake.id} item={shake} />
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* 5. Party Orders Band */}
+        <PartyBand />
       </main>
+
+      {/* 6. Footer (Char bg) */}
+      <Footer />
+
+      {/* Order bar (Floating sticky bottom when items > 0) */}
+      <OrderBar />
+
+      {/* Order sheet drawer */}
+      <OrderSheet />
+
+      {/* WhatsApp Handoff Confirmation Modal */}
+      <ConfirmationModal />
     </div>
-  );
+  )
 }
