@@ -64,11 +64,7 @@ export function Hero() {
       {/* Central Hero Visual Container with 4:5 mobile / 16:9 desktop crop */}
       <div className="relative w-full max-w-md mx-auto aspect-[4/3] sm:aspect-[16/10] rounded-[24px] overflow-hidden border border-white/15 shadow-2xl bg-char-2 z-10 group">
         <Image
-          src={
-            imgError
-              ? heroPlaceholder
-              : "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1080&q=80&auto=format&fit=crop"
-          }
+          src={imgError ? heroPlaceholder : "/images/hero-4x5.jpg"}
           alt="Freshly baked artisan pizza"
           fill
           priority
@@ -116,7 +112,7 @@ export function Hero() {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-[14px] overflow-hidden relative flex-shrink-0 bg-char-2 border border-line">
                 <Image
-                  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=80&auto=format&fit=crop"
+                  src={featuredItem.image}
                   alt={featuredItem.name}
                   fill
                   sizes="64px"
