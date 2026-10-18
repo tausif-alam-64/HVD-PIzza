@@ -32,8 +32,8 @@ export const CONFIG: BusinessConfig = {
   tagline: "Fresh out of the oven, three taps from your door.",
   area: "Sanghipuram (Adani Cement Colony), Gujarat",
   fullAddress: "Near Community Centre, Sanghipuram Colony, Abdasa, Kutch, Gujarat 370511",
-  phone: "+91 98765 43210", // [CONFIRM] Replace with operational phone
-  whatsappNumber: "919876543210", // [CONFIRM] Replace with actual WhatsApp number
+  phone: "+91 70079 79770", // [CONFIRM] Replace with operational phone
+  whatsappNumber: "917007979770", // [CONFIRM] Replace with actual WhatsApp number
   hours: {
     open: 16, // 4:00 PM
     close: 23, // 11:00 PM
